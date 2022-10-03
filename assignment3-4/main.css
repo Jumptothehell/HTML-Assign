@@ -1,0 +1,83 @@
+.grid-container{
+    display: grid;
+    grid-template-columns: 30% auto 40%;
+    grid-gap: 5px;
+}
+.grid-container > div
+{
+    border: 0.5px solid palevioletred;
+    font-size: 30px;
+    text-align: center;
+    background-color: white;
+}
+#header{
+    grid-column: 1/span 3;
+}
+#menu{
+    grid-column: 1/span 1;
+}
+#picture{
+    grid-column: 2/span 2;
+}
+#head-ingredients{
+    grid-column: 1/span 3;
+}
+#ingredients{
+    grid-column: 1/span 2;
+}
+#ingredients-picture{
+    grid-column: 3/span 1;
+}
+#step-by-step{
+    grid-column: 1/span 3;
+}
+#footer{
+    grid-column: 1/span 3;
+}
+div{
+    text-align: center;
+}
+p{
+    text-align: left;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 12pt;
+}
+h1{
+    background-color: bisque;
+    text-align: center;
+    color: chocolate;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 25pt;
+    font-weight: bolder;
+}
+h2{
+    /* background-color: rgb(185, 217, 246); */
+    color:  palevioletred;
+    font-family: 'Courier New', Courier, monospace;
+}
+h3{
+    background-color: rgb(237, 219, 163);
+    color: goldenrod;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    font-size: 18pt;
+}
+a:link{
+    color: blueviolet;
+}
+li{
+    text-align: left;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 12pt;
+}
+img{
+    width: 100%;
+    display: block;
+    margin: auto;
+}
+#StepCinnamonRoll_pic{
+    width: 60%;
+}
+#apple-PNG{
+    width: 30%;
+}
