@@ -21,7 +21,6 @@ function timeStart(){
 	timer = setInterval(timeCount, TIMER_TICK);
 	function timeCount(){
 		var allbox = document.querySelectorAll("#game-layer div");
-		console.log(allbox.length);
 		if (second <= 0 && allbox.length !== 0){
 			alert("Game Over");
 			clearInterval(timer);
