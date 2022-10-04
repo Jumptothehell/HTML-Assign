@@ -6,5 +6,35 @@
 	"top2":{
 		"brandname": "B.K.T Clothing",
 		"price":"500",
-		"pic":"top2.jpg"}
+		"pic":"top2.jpg"},
+	"top3":{
+		"brandname": "ARMANI",
+		"price":"469",
+		"pic":"top3.jpg"},
+	"top4":{
+		"brandname": "FENDI",
+		"price":"862",
+		"pic":"top4.jpg"},
+	"top5":{
+		"brandname": "HOUSE OF VERSACE",
+		"price":"462",
+		"pic":"top5.jpg"},
+	"top6":{
+		"brandname": "BURBERRY",
+		"price":"856",
+		"pic":"top6.jpg"},
+	"top7":{
+		"brandname": "RALPH LAUREN",
+		"price":"305",
+		"pic":"top7.jpg"},
+	"top8":{
+		"brandname": "CHANEL",
+		"price":"588",
+		"pic":"top8.jpg"},
+	"top9":{
+		"brandname": "PRADA",
+		"price":"305",
+		"pic":"top9.jpg"}
+
+	
 }
