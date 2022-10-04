@@ -1,0 +1,10 @@
+{
+	"top1":{
+		"brandname": "A.K.O.O Clothing",
+		"price":"200",
+		"pic":"top1.jpg"},
+	"top2":{
+		"brandname": "B.K.T Clothing",
+		"price":"500",
+		"pic":"top2.jpg"}
+}
