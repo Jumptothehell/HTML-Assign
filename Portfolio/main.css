@@ -1,0 +1,43 @@
+
+h1{
+    background-color: rgb(124, 96, 69);
+    color: rgb(228, 226, 100);
+    font-size: 36pt;
+}
+h2{
+    color: brown;
+    font-size: 24pt;
+}
+div name{
+    font-family: Garamond, 'Times New Roman', Times, serif;
+    font-size: 20pt;
+}
+img{
+    width: 25%;
+}
+
+/* Font-size */
+ul{
+    font-family: Garamond, 'Times New Roman', Times, serif;
+    font-size: 18pt;
+    /* font-weight: bold;
+    font-style: italic; */
+    /* center block */
+    /* width: 200px;
+    margin: auto; */
+}
+
+div{
+    text-align: center;
+}
+
+.left_page{
+    text-align: left;
+}
+
+/* context selectors */
+div a{
+    font-size: 30px;
+    font-weight: bold;
+    color: blue;
+}
