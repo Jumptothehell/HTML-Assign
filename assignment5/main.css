@@ -1,0 +1,38 @@
+body{
+    background-image: url("pic/—Pngtree—geometric\ memphis\ style\ seamless\ pattern_988962.png");
+    background-position: center;
+    background-size: cover;
+
+    text-align: center;
+
+    font-family:'Courier New', Courier, monospace;
+    font-size: 24px;
+}
+h1{
+    font-size: 28px;
+    font-weight: bold;
+    text-decoration: underline;
+}
+hr{
+    margin: 20px;
+    border: 0.2px solid black;
+}
+#topic1, #comment1, #comment2{
+    padding: 10px;
+    background-color: rgb(255, 255, 255);
+    border: 1px solid black;
+    border-radius: 10px;
+}
+#text1{
+    padding: 10px;
+    font-family:'Courier New', Courier, monospace;
+    font-size: 16px;
+}
+#PikachuGif{
+    width: 40%;
+    display: block;
+    margin: auto;
+
+    border-radius: 100px;
+    padding: 20px;
+}
