@@ -1,5 +1,7 @@
+const { rejects } = require('assert');
 const fs = require('fs');
 const http = require('http');
+const { resolve } = require('path');
 
 const hostname = 'localhost';
 const port = 3000;
@@ -7,6 +9,27 @@ const port = 3000;
 
 const server = http.createServer((req, res) => {
     res.writeHead(200, {'Content-Type': 'text/html'});
+    const readData = () => {
+        return new Promise((resolve, rejects) => {
+            fs.readFile('cloth1.json', 'utf8', (err, data) => {
+                if (err){
+                    rejects(err);
+                }else{
+                    console.log(data);
+                    resolve(data);
+                }
+            })
+        })
+    }
+    const writeData  = (data) => {
+        return new Promise ((resolve, rejects) =>{
+            if(err){
+                rejects(err);
+            }else{
+                resolve("saved!");
+            }
+        })
+    }
     //ทำการเรียกใช้ promise ในนี้นะ
     //แสดงผลของ json ใหม่ที่เพิ่มจำนวนเสื้อผ้าไปแล้วบน browser
     //ผล json ที่ได้บน browser จะไม่สวย ดังนั้นเราสามารถแก้ได้โดยกำหนด argument ใน JSON.stringify()
