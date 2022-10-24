@@ -22,7 +22,7 @@ function showData(data){
         var Info = document.createElement("p")
         Info.innerHTML = data[keys[i]].brandname + "<br>" + 
         "price: " + data[keys[i]].price; 
-        
+
         allbox[i].appendChild(pic);
         allbox[i].appendChild(Info); 
     }
