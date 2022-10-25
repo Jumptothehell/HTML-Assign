@@ -52,7 +52,7 @@ let editJson = (data) => {
     var keysStock = Object.keys(stock); //key form const stock. (item1. item2, ...)
     for(var i = 0; i < keysData.length; i++)
     {
-        jsondata[keysData[i]]["stock"] = stock[keysStock[i]];
+        jsondata[keysData[i]]["n_stock"] = stock[keysStock[i]];
     }
     var newdata = JSON.stringify(jsondata, null, " ");
     // readMsg().then(writeMsg).then((out) => console.log(out));
