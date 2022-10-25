@@ -42,7 +42,7 @@ const updateMsg = (new_msg, data1) => {
 //ทำให้สมบูรณ์
 const writeMsg = (data) => {
   return new Promise((resolve,reject) => {
-    
+
 })};
 
 var server = http.listen(3001, () => {
