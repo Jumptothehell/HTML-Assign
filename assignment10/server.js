@@ -13,14 +13,14 @@ app.use(bodyParser.urlencoded({extended: false}))
 // read from file to user
 //ทำให้สมบูรณ์
 app.get('/inmsg', async (req, res) => {
-  let msgin_ = await readMsg();
+  // let msgin_ = await readMsg();
 })
 
 //from user, write data to file
 //ทำให้สมบูรณ์
 app.post('/outmsg', async (req, res) => {
+  console.log(req.body)
   let msgout_ = await req.body;
-  let writemsg_ = await writeMsg;
   console.log(msgout_);
   res.json(msgout_);
 })
@@ -60,6 +60,11 @@ const writeMsg = (data) => {
       }
     });
   })
+}
+
+const callFunc = async() => {
+  let readmsg = await readMsg();
+  let writemsg = await writeMsg(readmsg);
 }
 var server = http.listen(3001, () => {
   console.log('server is running on port http://localhost:'+ server.address().port);
