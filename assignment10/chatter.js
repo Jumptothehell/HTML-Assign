@@ -28,13 +28,13 @@ function loadLog(){
 
 function sendMsg(){
 	//get msg
-	var msg_text = document.getElementById("userMsg").value;
+	var text = document.getElementById("userMsg").value;
 	document.getElementById("userMsg").value = "";
-	writeLog(msg_text);
+	writeLog(text);
 }
 
 //ทำให้สมบูรณ์
-const writeLog = (async (msg_text) => {
+const writeLog = (async (text) => {
 	let wr_ = await fetch("/", {
 		method: "POST",
 		headers: {
@@ -44,7 +44,7 @@ const writeLog = (async (msg_text) => {
 		body: JSON.stringify({
 			time: d.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true }),
 			user:username,
-			message:msg_text
+			message:text
 		})
 	});
 	let content = await wr_.json();
@@ -54,16 +54,11 @@ const writeLog = (async (msg_text) => {
 //ทำให้สมบูรณ์
 const readLog = (async () => {
 	let read_ = await fetch("/", {
-		method: "POST",
+		method: "GET",
 		headers: {
 			'Accept': 'application/sjson',
 			'Content-Type': 'application/json'
-		},
-		body: JSON.stringify({
-			time: d.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true }),
-			user:username,
-			message:msg
-		})
+		}
 	});
 	let readcontent = await read_.json();
 	console.log(readcontent);
