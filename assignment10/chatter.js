@@ -34,17 +34,36 @@ function sendMsg(){
 
 //ทำให้สมบูรณ์
 const writeLog = (async (msg) => {
-	// body: JSON.stringify({
-	// 	time: d.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true }),
-	// 	user:username,
-	// 	message:msg});
-	
+	let wr_ = await fetch("/", {
+		method: "POST",
+		headers: {
+			'Accept': 'application/sjson',
+			'Content-Type': 'application/json'
+		},
+		body: JSON.stringify({
+			name: "John",
+            age: 60
+			// time: d.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true }),
+			// user:username,
+			// message:msg
+		})
+	});
+	let content = await wr_.json();
+	console.log(content);
 });
 
 //ทำให้สมบูรณ์
 const readLog = (async () => {
-	
-})
+	// let read_ = await fetch("/", {
+	// 	method: "GET",
+	// 	headers: {
+	// 		'Accept': 'application/json',
+	// 		'Content-Type': 'application/json'
+	// 	}
+	// });
+	// let readcontent = await read_.json();
+	// console.log(readcontent);
+});
 
 // รับ msg ที่เป็น JS object ที่อ่านมาได้จาก file
 function postMsg(msg){
