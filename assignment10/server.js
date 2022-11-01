@@ -13,7 +13,8 @@ app.use(bodyParser.urlencoded({extended: false}))
 // read from file to user
 //ทำให้สมบูรณ์
 app.get('/inmsg', async (req, res) => {
-  // let msgin_ = await readMsg();
+  let msgin_ = await readMsg();
+  res.send(msgin_);
 })
 
 //from user, write data to file
