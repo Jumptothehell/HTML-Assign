@@ -29,8 +29,7 @@ app.post('/outmsg', async (req, res) => {
   let msgUpdate = await updateMsg(newMsg, msgin_);
   // console.log(msgUpdate);
   // let writedMsg = await writeMsg(msgUpdate);
-  res.write(await writeMsg(msgUpdate));
-  res.end();
+  res.json(await writeMsg(msgUpdate));
   // console.log(writedMsg);
 
   // let msgout_ = await writeMsg(await updateMsg(newMsg, msgin_));
