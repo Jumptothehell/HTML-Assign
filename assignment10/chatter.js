@@ -30,42 +30,34 @@ function sendMsg(){
 	//get msg
 	var text = document.getElementById("userMsg").value;
 	document.getElementById("userMsg").value = "";
-	// writeLog(text);
+	writeLog(text);
 }
 
 //ทำให้สมบูรณ์
-// const writeLog = (async (text) => {
-// 	let response = await fetch("/", {
-// 		method: "POST",
-// 		headers: {
-// 			'Accept': 'application/sjson',
-// 			'Content-Type': 'application/json'
-// 		},
-// 		body: JSON.stringify({
-// 			time: d.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true }),
-// 			user:username,
-// 			message:text
-// 		})
-// 	});
-// 	let content = await response.json();
-// 	console.log(content);
-// });
+const writeLog = (async (text) => {
+	let response = await fetch("/outmsg", {
+		method: "POST",
+		headers: {
+			'Accept': 'application/sjson',
+			'Content-Type': 'application/json'
+		},
+		body: JSON.stringify({
+			time: d.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true }),
+			user:username,
+			message:text
+		})
+	});
+	let content = await response.json();
+	console.log(content);
+});
 
 //ทำให้สมบูรณ์
-// const readLog = (async () => {
-// 	let read_ = await fetch("/", {
-// 		method: "GET",
-// 		headers: {
-// 			'Accept': 'application/sjson',
-// 			'Content-Type': 'application/json'
-// 		}
-// 	});
-// 	let readcontent = await read_.json();
-// 	console.log(readcontent);
-// });
-const readLog = () => {
-	fetch ("/").then(response => response.json()).then(data => console.log(data))
-}
+const readLog = (async () => {
+	let read_ = await fetch("/inmsg");
+	let readcontent = await read_.json();
+	postMsg(readcontent);
+	//console.log(readcontent.dataMsg[0].message);
+});
 
 // รับ msg ที่เป็น JS object ที่อ่านมาได้จาก file
 function postMsg(msg){

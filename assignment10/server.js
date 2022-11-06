@@ -4,6 +4,9 @@ var app = express();
 var http = require('http').Server(app);
 
 var fs = require('fs');
+const { json } = require('body-parser');
+const { Console } = require('console');
+const { rejects } = require('assert');
 
 app.use(express.static(__dirname));
 app.use(bodyParser.json());
@@ -17,13 +20,23 @@ app.get('/inmsg', async (req, res) => {
   res.send(msgin_);
 })
 
-//from user, write data to file
+//from user, wdrite data to file
 //ทำให้สมบูรณ์
 app.post('/outmsg', async (req, res) => {
-  console.log(req.body)
-  let msgout_ = await req.body;
-  console.log(msgout_);
-  res.json(msgout_);
+  let newMsg = await req.body;
+  let msgin_ = await readMsg();
+  // console.log(msgin_);
+  let msgUpdate = await updateMsg(newMsg, msgin_);
+  // console.log(msgUpdate);
+  // let writedMsg = await writeMsg(msgUpdate);
+  res.write(await writeMsg(msgUpdate));
+  res.end();
+  // console.log(writedMsg);
+
+  // let msgout_ = await writeMsg(await updateMsg(newMsg, msgin_));
+
+  //console.log(msgout_);
+  //res.json(msgout_);
 })
 
 // read json data from file
@@ -32,7 +45,7 @@ const readMsg = () => {
   return new Promise((resolve,reject) => {
     fs.readFile('log.json', 'utf8', (err, data) => {
       if(err){
-        reject(err)
+        reject(err);
       }
       else{
         resolve(data);
@@ -42,30 +55,28 @@ const readMsg = () => {
 } 
 
 // update json data
-//ทำให้สมบูรณ์
-// const updateMsg = (new_msg, data1) => {
-//   return new Promise((resolve,reject) => { 
-      
-//   });
-// }
-
+// ทำให้สมบูรณ์
+const updateMsg = (new_msg, data1) => {
+  return new Promise((resolve,reject) => {
+    let jsonMsg = JSON.parse(data1); //transfrom JSON obj to array
+    jsonMsg.dataMsg.push(new_msg);
+    resolve(jsonMsg);
+    console.log('New Message!');
+  });
+}
 // write json data to file
 //ทำให้สมบูรณ์
 const writeMsg = (data) => {
+  data = JSON.stringify(data, null, " ");
   return new Promise((resolve,reject) => {
     fs.writeFile('log.json', data, (err) => {
       if(err){
           rejects(err);
       }else{
-          resolve(data);
+          resolve(data)
       }
     });
   })
-}
-
-const callFunc = async() => {
-  let readmsg = await readMsg();
-  let writemsg = await writeMsg(readmsg);
 }
 var server = http.listen(3001, () => {
   console.log('server is running on port http://localhost:'+ server.address().port);
