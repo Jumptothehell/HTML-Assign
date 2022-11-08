@@ -23,19 +23,25 @@ app.get('/inmsg', async (req, res) => {
 //from user, wdrite data to file
 //ทำให้สมบูรณ์
 app.post('/outmsg', async (req, res) => {
+<<<<<<< Updated upstream
   let newMsg = await req.body;
   let msgin_ = await readMsg();
-  // console.log(msgin_);
+  // console.log(typeof(msgin_));
   let msgUpdate = await updateMsg(newMsg, msgin_);
+  let writeMsgUpdate = await writeMsg(msgUpdate)
   // console.log(msgUpdate);
-  // let writedMsg = await writeMsg(msgUpdate);
-  res.json(await writeMsg(msgUpdate));
+  res.json(writeMsgUpdate);
+  res.end();
   // console.log(writedMsg);
 
   // let msgout_ = await writeMsg(await updateMsg(newMsg, msgin_));
 
   //console.log(msgout_);
   //res.json(msgout_);
+=======
+  let msgout_ = await req.body;
+  res.json(msgout_);
+>>>>>>> Stashed changes
 })
 
 // read json data from file
@@ -54,13 +60,24 @@ const readMsg = () => {
 } 
 
 // update json data
+<<<<<<< Updated upstream
 // ทำให้สมบูรณ์
 const updateMsg = (new_msg, data1) => {
   return new Promise((resolve,reject) => {
-    let jsonMsg = JSON.parse(data1); //transfrom JSON obj to array
-    jsonMsg.dataMsg.push(new_msg);
-    resolve(jsonMsg);
-    console.log('New Message!');
+    var data = JSON.parse(data1); // --> it Obj
+    data.dataMsg.push(new_msg);
+    // console.log(data.dataMsg.length);
+    // console.log(data.dataMsg);
+    resolve(data);
+=======
+//ทำให้สมบูรณ์
+const updateMsg = (new_msg, data1) => {
+  return new Promise((resolve,reject) => { 
+      // data1 = 
+  });
+}
+>>>>>>> Stashed changes
+
   });
 }
 // write json data to file
@@ -70,13 +87,17 @@ const writeMsg = (data) => {
   return new Promise((resolve,reject) => {
     fs.writeFile('log.json', data, (err) => {
       if(err){
-          rejects(err);
+        rejects(err);
       }else{
           resolve(data)
       }
     });
   })
 }
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 var server = http.listen(3001, () => {
   console.log('server is running on port http://localhost:'+ server.address().port);
 });
