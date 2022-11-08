@@ -23,7 +23,6 @@ app.get('/inmsg', async (req, res) => {
 //from user, wdrite data to file
 //ทำให้สมบูรณ์
 app.post('/outmsg', async (req, res) => {
-<<<<<<< Updated upstream
   let newMsg = await req.body;
   let msgin_ = await readMsg();
   // console.log(typeof(msgin_));
@@ -38,10 +37,6 @@ app.post('/outmsg', async (req, res) => {
 
   //console.log(msgout_);
   //res.json(msgout_);
-=======
-  let msgout_ = await req.body;
-  res.json(msgout_);
->>>>>>> Stashed changes
 })
 
 // read json data from file
@@ -60,7 +55,6 @@ const readMsg = () => {
 } 
 
 // update json data
-<<<<<<< Updated upstream
 // ทำให้สมบูรณ์
 const updateMsg = (new_msg, data1) => {
   return new Promise((resolve,reject) => {
@@ -69,14 +63,6 @@ const updateMsg = (new_msg, data1) => {
     // console.log(data.dataMsg.length);
     // console.log(data.dataMsg);
     resolve(data);
-=======
-//ทำให้สมบูรณ์
-const updateMsg = (new_msg, data1) => {
-  return new Promise((resolve,reject) => { 
-      // data1 = 
-  });
-}
->>>>>>> Stashed changes
 
   });
 }
@@ -94,10 +80,6 @@ const writeMsg = (data) => {
     });
   })
 }
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
 var server = http.listen(3001, () => {
   console.log('server is running on port http://localhost:'+ server.address().port);
 });

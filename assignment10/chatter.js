@@ -48,12 +48,8 @@ const writeLog = (async (text) => {
 		})
 	});
 	let content = await response.json();
-<<<<<<< Updated upstream
 	console.log(content);
 	postMsg(JSON.parse(content));
-=======
-	postMsg(content);
->>>>>>> Stashed changes
 });
 
 //ทำให้สมบูรณ์
@@ -61,13 +57,7 @@ const readLog = (async () => {
 	let read_ = await fetch("/inmsg");
 	let readcontent = await read_.json();
 	postMsg(readcontent);
-<<<<<<< Updated upstream
-	//console.log(readcontent.dataMsg[0].message);
-});
-=======
-});
-
->>>>>>> Stashed changes
+})
 
 // รับ msg ที่เป็น JS object ที่อ่านมาได้จาก file
 function postMsg(msg){
