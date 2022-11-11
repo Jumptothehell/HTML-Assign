@@ -75,12 +75,14 @@ app.post('/checkLogin',async (req,res) => {
         // console.log(readUserDB[keysUserData[i]]); //username: 'keroro', password: 'green', img: 'avatar.png' 
         // console.log(readUserDB[keysUserData[i]].username); //keroro
         if(readUserDB[keysUserData[i]].username == username && readUserDB[keysUserData[i]].password == password){
-            console.log('log in!');
-            return res.redirect('feed.html');
+            // console.log('log in!');
+            res.cookie("username",username);
+            res.cookie("img",readUserDB[keysUserData[i]].img);
+            return await res.redirect('feed.html');
             
         }else{
-            console.log('can not log in');
-            return res.redirect('index.html?error=1');
+            // console.log('can not log in');
+            return await res.redirect('index.html?error=1');
         }
     }
     // console.log(keysUserData);
