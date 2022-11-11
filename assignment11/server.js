@@ -7,6 +7,8 @@ const bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 const multer = require('multer');
 const path = require('path');
+const { resolve } = require('path');
+const { rejects } = require('assert');
 
 app.use(express.static(__dirname));
 app.use(bodyParser.json());
@@ -42,7 +44,6 @@ app.post('/profilepic', (req,res) => {
 // ถ้าต้องการจะลบ cookie ให้ใช้
 // res.clearCookie('username');
 app.get('/logout', (req,res) => {
-    
     return res.redirect('index.html');
 })
 
@@ -58,6 +59,31 @@ app.post('/writePost',async (req,res) => {
 
 //ทำให้สมบูรณ์
 app.post('/checkLogin',async (req,res) => {
+    let jsonUseDBPath = await path.join(__dirname, 'js', 'userDB.json')
+    let readUserDB = await readJson(jsonUseDBPath); //Object
+    // console.log(typeof(readUserDB));
+    // readUserDB.then((out) => console.log(out));
+    readUserDB = await JSON.parse(readUserDB);
+    // console.log(readUserDB);
+    let keysUserData = await Object.keys(readUserDB); //[ 'user1', 'user2', 'user3', 'user4', 'user5' ]
+    for(let i = 0; i < keysUserData.length; i++)
+    {
+        let username = await req.body.username;
+        // console.log(username);
+        let password = await req.body.password;
+        // console.log(password)
+        // console.log(readUserDB[keysUserData[i]]); //username: 'keroro', password: 'green', img: 'avatar.png' 
+        // console.log(readUserDB[keysUserData[i]].username); //keroro
+        if(readUserDB[keysUserData[i]].username == username && readUserDB[keysUserData[i]].password == password){
+            console.log('log in!');
+            return res.redirect('feed.html');
+            
+        }else{
+            console.log('can not log in');
+            return res.redirect('index.html?error=1');
+        }
+    }
+    // console.log(keysUserData);
     // ถ้าเช็คแล้ว username และ password ถูกต้อง
     // return res.redirect('feed.html');
     // ถ้าเช็คแล้ว username และ password ไม่ถูกต้อง
@@ -67,7 +93,15 @@ app.post('/checkLogin',async (req,res) => {
 
 //ทำให้สมบูรณ์
 const readJson = (file_name) => {
-    
+    return new Promise((resolve, rejects) => {
+        fs.readFile(file_name, 'utf8', (err, data) => {
+            if(err){
+                rejects(err);
+            }else{
+                resolve(data);
+            }
+        })
+    })
 }
 
 //ทำให้สมบูรณ์
