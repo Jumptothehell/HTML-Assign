@@ -61,13 +61,29 @@ function showImg(filename){
 // อ่าน post จาก file
 // complete it
 async function readPost(){
-	
+	let read_ = await fetch('/readPost');
+	let content = await read_.json();
+	// console.log(content);
+	showPost(content);
 }
 
 // เขียน post ใหม่ ลงไปใน file
 // complete it
 async function writePost(msg){
-	
+	let postout = await fetch("/writePost", {
+		method: "POST",
+		headers: {
+			'Accept': 'application/sjson',
+			'Content-Type': 'application/json'
+		},
+		body: JSON.stringify({
+			user:getCookie('username'),
+			message:msg
+		})
+	});
+	let content = await postout.json();
+	console.log(content);
+	showPost(JSON.parse(content));
 }
 
 // แสดง post ที่อ่านมาได้ ลงในพื้นที่ที่กำหนด
