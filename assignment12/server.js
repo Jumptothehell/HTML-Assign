@@ -60,7 +60,12 @@ const queryDB = (sql) => {
 }
 
 app.post('/regisDB', async (req,res) => {
-    
+    let sql = "CREATE TABLE IF NOT EXISTS userinfo (id INT AUTO_INCREMENT PRIMARY KEY, username VARCHAR(200), email VARCHAR(200),password VARCHAR(45))";
+    let result = await queryDB(sql);
+    sql = `INSERT INTO userinfo (username, email, password) VALUES ("${req.body.username}", "${req.body.email}", "${req.body.password}")`;
+    result = await queryDB(sql);
+    console.log("New record created successfullyone");
+    res.end("New record created successfully");
 })
 
 //ทำให้สมบูรณ์
