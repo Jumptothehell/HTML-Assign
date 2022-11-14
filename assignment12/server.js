@@ -48,6 +48,8 @@ con.connect(err => {
     }
 })
 
+let tablename = 'userinfo';
+
 const queryDB = (sql) => {
     return new Promise((resolve,reject) => {
         // query method
@@ -62,10 +64,13 @@ const queryDB = (sql) => {
 app.post('/regisDB', async (req,res) => {
     let sql = "CREATE TABLE IF NOT EXISTS userinfo (id INT AUTO_INCREMENT PRIMARY KEY, username VARCHAR(200), email VARCHAR(200),password VARCHAR(45))";
     let result = await queryDB(sql);
-    sql = `INSERT INTO userinfo (username, email, password) VALUES ("${req.body.username}", "${req.body.email}", "${req.body.password}")`;
+    sql = `INSERT INTO userinfo (username, email, password, img) VALUES ("${req.body.username}", "${req.body.email}", "${req.body.password}", "avatar.png")`;
     result = await queryDB(sql);
     console.log("New record created successfullyone");
-    res.end("New record created successfully");
+
+    // console.log(req.body.username);
+    res.cookie("username",req.body.username);
+    return res.redirect('login.html')
 })
 
 //ทำให้สมบูรณ์
@@ -95,6 +100,33 @@ app.post('/writePost',async (req,res) => {
 
 //ทำให้สมบูรณ์
 app.post('/checkLogin',async (req,res) => {
+    let username = req.body.username;
+    console.log(username);
+    let password = req.body.password;
+    console.log(password);
+
+    let sql = `SELECT username, password FROM ${tablename}`;
+    let result = await queryDB(sql);//--> object
+    // console.log(typeof(result)); 
+    // console.log(result);
+    // console.log(result[2]); //RowDataPacket { username: 'keroro', password: 'green' }
+    // console.log(result.length); //15
+    for(let i = 0; i < result.length; i++)
+    {
+        console.log(result[i].username == username && result[i].password == password);
+        console.log('--------------');
+        if(result[i].username == username && result[i].password == password){
+            console.log(result[i].username);
+            console.log(result[i].img);
+            res.cookie("username", username);
+            res.cookie("img", );
+            return res.redirect('feed.html');
+        }
+        // console.log(i);
+        console.log(result[i]); //RowDataPacket { username: 'a', password: '1234' }
+        console.log('--------------')
+    }
+    return res.redirect('login.html?error=1')
     // ถ้าเช็คแล้ว username และ password ถูกต้อง
     // return res.redirect('feed.html');
     // ถ้าเช็คแล้ว username และ password ไม่ถูกต้อง
