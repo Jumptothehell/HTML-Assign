@@ -68,7 +68,8 @@ app.get('/logout', (req,res) => {
 app.get('/readPost', async (req,res) => {
     let filepath = path.join(__dirname, 'js', 'postDB.json');
     let postin_ = await readJson(filepath);
-    // console.log(postin_);
+    console.log(typeof(postin_));
+    console.log(postin_);
     res.send(postin_);
 })
 

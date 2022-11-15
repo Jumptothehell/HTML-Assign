@@ -60,18 +60,38 @@ function showImg(filename){
 
 // complete it
 async function readPost(){
-	
-	
+	let read_ = await fetch('/readPost');
+	let content = await read_.json();
+	// console.log(content); //0 : {id: 37, username: 'sad', post: 'dream'}
+	// console.log(typeof(content)); //object
+	showPost(content);
 }
 
 // complete it
 async function writePost(msg){
-	
+	let postout = await fetch("/writePost", {
+		method: "POST",
+		headers: {
+			'Accept': 'application/sjson',
+			'Content-Type': 'application/json'
+		},
+		body: JSON.stringify({
+			user: getCookie('username'),
+			post: msg
+		})
+	});
+	console.log(typeof(postout)); //object
+	let content = await postout.json();
+	console.log(typeof(content)); //object
+	console.log(content);
+	showPost(content);
 }
 
 // แสดง post ที่อ่านมาได้ ลงในพื้นที่ที่กำหนด
 function showPost(data){
 	var keys = Object.keys(data);
+	// console.log(data);
+	// console.log(keys);
 	var divTag = document.getElementById("feed-container");
 	divTag.innerHTML = "";
 	for (var i = keys.length-1; i >=0 ; i--) {
@@ -81,12 +101,15 @@ function showPost(data){
 		divTag.appendChild(temp);
 		var temp1 = document.createElement("div");
 		temp1.className = "postmsg";
-		temp1.innerHTML = data[keys[i]]["message"];
+		temp1.innerHTML = data[keys[i]].post;
+		// console.log(data[keys[i]].post);
+		// console.log(data[i].post);
 		temp.appendChild(temp1);
 		var temp1 = document.createElement("div");
 		temp1.className = "postuser";
 		
-		temp1.innerHTML = "Posted by: "+data[keys[i]]["user"];
+		temp1.innerHTML = "Posted by: "+ data[keys[i]].username;
+		// console.log(data[keys[i]].username);
 		temp.appendChild(temp1);
 		
 	}

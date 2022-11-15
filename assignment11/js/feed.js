@@ -81,8 +81,11 @@ async function writePost(msg){
 			message:msg
 		})
 	});
+	console.log(postout);
+	// console.log(typeof(postout)); //object
 	let content = await postout.json();
-	console.log(content);
+	// console.log(typeof(content)); //string
+	// console.log(content);
 	showPost(JSON.parse(content));
 }
 
